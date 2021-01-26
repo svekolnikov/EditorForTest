@@ -61,16 +61,10 @@ namespace EditorForTest.ViewModel
         #region Commands
 
         public ICommand PasteCommand { get; set; }
-        public void PasteCommandExecute(object obj)
-        {
-            InputText = Clipboard.GetText();
-        }
-
+        public void PasteCommandExecute(object obj) => InputText = Clipboard.GetText();
+        
         public ICommand CopyCommand { get; set; }
-        public void CopyCommandExecute(object obj)
-        {
-            Clipboard.SetText(OutputText);
-        }
+        public void CopyCommandExecute(object obj) => Clipboard.SetText(OutputText);
 
         public ICommand DoScriptCommand { get; set; }
         public void DoScriptCommandExecute(object obj)
