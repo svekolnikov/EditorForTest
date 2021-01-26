@@ -1,0 +1,65 @@
+﻿<Window x:Class="EditorForTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EditorForTest"
+        xmlns:vm="clr-namespace:EditorForTest.ViewModel"
+        mc:Ignorable="d"
+        WindowStyle="ToolWindow"
+        SizeToContent="WidthAndHeight"
+        Title="Editor v1.3 @pogo" 
+        MinHeight="400" MinWidth="200" 
+        WindowStartupLocation="CenterScreen"
+        >
+    
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Button 
+            Grid.Row="0" 
+            Content="Paste from buffer"
+            Command="{Binding PasteCommand}"
+            />
+        <GroupBox Grid.Row="1" Header="Input" MinHeight="150" MaxHeight="250">
+            <TextBox 
+                        Text="{Binding InputText, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
+                        TextWrapping="Wrap" 
+                        AcceptsReturn="True"
+                        AcceptsTab="True"
+                        VerticalScrollBarVisibility="Auto"
+                        />
+        </GroupBox>
+        <Button 
+            Grid.Row="2" 
+            Content="Copy (auto to buffer)"
+            Command="{Binding CopyCommand}"
+            />
+        <GroupBox Grid.Row="3" Header="Output" MinHeight="150" MaxHeight="250">
+            <TextBox 
+                        Text="{Binding OutputText, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                        TextWrapping="Wrap" 
+                        AcceptsReturn="True"
+                        AcceptsTab="True"
+                        IsReadOnly="True"
+                        Background="#FFDDDDDD"
+                        VerticalScrollBarVisibility="Auto"                
+                        />
+        </GroupBox>
+        <Button 
+            Grid.Row="4" 
+            Content="Execute script"
+            Command="{Binding DoScriptCommand}"
+            />
+    </Grid>
+</Window>
